@@ -6,13 +6,18 @@ $.getJSON(
   function foo(data)
   {
     $.each(
-      data.data.children.slice(0, 10),
+      data.data.children.slice(0, 100),
       function (i, post) {
         var tmpl = document.getElementById('post-template').content.cloneNode(true);
         tmpl.querySelector('.post-title').innerText = post.data.title;
-        tmpl.querySelector('.post-body').src = post.data.url;
+        var imgUrl = post.data.url;
+        var extension = imgUrl.split('.').pop();
+        if (extension !== 'jpg' || extension !== 'gif') {
+          return;
+        } else {
+          tmpl.querySelector('.post-image').src = post.data.url;
+        }
         commentsList.appendChild(tmpl);
-
       }
     );
   }
