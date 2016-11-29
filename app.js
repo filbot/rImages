@@ -2,7 +2,7 @@
 var commentsList = document.getElementById('posts');
 
 $.getJSON(
-  "http://www.reddit.com/r/pics.json?jsonp=?",
+  "http://www.reddit.com/r/pics.json?jsonp",
   function foo(data)
   {
     $.each(
